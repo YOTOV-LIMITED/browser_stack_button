@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Browser stack button by YOTOV-LIMITED</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Browser stack button</h1>
+      <h2 class="project-tagline"></h2>
+      <a href="https://github.com/YOTOV-LIMITED/browser_stack_button" class="btn">View on GitHub</a>
+      <a href="https://github.com/YOTOV-LIMITED/browser_stack_button/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/YOTOV-LIMITED/browser_stack_button/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="browserstackbutton" class="anchor" href="#browserstackbutton" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>BrowserStackButton</h1>
+
+<p>BrowserStackButton adds a button to your page to allow you to quickly and
+easily view the page you are looking at in BrowserStack. It is currently set up
+to work on a Rails project but could probably be used in Sinatra or the like.</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Add this line to your application's Gemfile:</p>
+
+<pre><code>gem 'browser_stack_button'
+</code></pre>
+
+<p>And then execute:</p>
+
+<pre><code>$ bundle
+</code></pre>
+
+<p>Or install it yourself as:</p>
+
+<pre><code>$ gem install browser_stack_button
+</code></pre>
+
+<h2>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h2>
+
+<p>Put your configuration in an initializer:</p>
+
+<p><code>config/initializers/browser_stack_button.rb</code></p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c1">BrowserStackButton</span>.configure <span class="pl-k">do </span>|<span class="pl-smi">config</span>|
+  <span class="pl-c"># ...</span>
+<span class="pl-k">end</span></pre></div>
+
+<h3>
+<a id="browser-configuration" class="anchor" href="#browser-configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Browser configuration</h3>
+
+<p>By default BrowserStackButton will not render any buttons for any browsers.
+You need to set them up as described below.
+Refer to the <a href="http://www.browserstack.com/integrations#integration-parameters">Browser Stack API documentation</a>
+for what each setting means.</p>
+
+<h4>
+<a id="default-options" class="anchor" href="#default-options" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Default options</h4>
+
+<p>These options are applied to all browsers, but can be overridden by the
+individual browser settings.</p>
+
+<div class="highlight highlight-source-ruby"><pre>  config.default_options <span class="pl-k">=</span> {
+    <span class="pl-c1">os:</span> <span class="pl-s"><span class="pl-pds">"</span>Windows<span class="pl-pds">"</span></span>,
+    <span class="pl-c1">start:</span> <span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span>,
+    <span class="pl-c1">speed:</span> <span class="pl-s"><span class="pl-pds">"</span>2<span class="pl-pds">"</span></span>,
+    <span class="pl-c1">zoom_to_fit:</span> <span class="pl-s"><span class="pl-pds">"</span>false<span class="pl-pds">"</span></span>,
+    <span class="pl-c1">resolution:</span> <span class="pl-s"><span class="pl-pds">"</span>1024x768<span class="pl-pds">"</span></span>,
+    <span class="pl-c1">full_screen:</span> <span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span>,
+  }</pre></div>
+
+<h4>
+<a id="configuring-browsers" class="anchor" href="#configuring-browsers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuring browsers</h4>
+
+<div class="highlight highlight-source-ruby"><pre>  config.browsers[<span class="pl-s"><span class="pl-pds">"</span>IE8<span class="pl-pds">"</span></span>] <span class="pl-k">=</span> { <span class="pl-c1">browser:</span> <span class="pl-s"><span class="pl-pds">"</span>IE<span class="pl-pds">"</span></span>, <span class="pl-c1">browser_version:</span> <span class="pl-s"><span class="pl-pds">"</span>8.0<span class="pl-pds">"</span></span>, <span class="pl-c1">os_version:</span> <span class="pl-s"><span class="pl-pds">"</span>7<span class="pl-pds">"</span></span> }
+  config.browsers[<span class="pl-s"><span class="pl-pds">"</span>IE9<span class="pl-pds">"</span></span>] <span class="pl-k">=</span> { <span class="pl-c1">browser:</span> <span class="pl-s"><span class="pl-pds">"</span>IE<span class="pl-pds">"</span></span>, <span class="pl-c1">browser_version:</span> <span class="pl-s"><span class="pl-pds">"</span>9.0<span class="pl-pds">"</span></span>, <span class="pl-c1">os_version:</span> <span class="pl-s"><span class="pl-pds">"</span>7<span class="pl-pds">"</span></span> }
+  config.browsers[<span class="pl-s"><span class="pl-pds">"</span>IE10<span class="pl-pds">"</span></span>] <span class="pl-k">=</span> { <span class="pl-c1">browser:</span> <span class="pl-s"><span class="pl-pds">"</span>IE<span class="pl-pds">"</span></span>, <span class="pl-c1">browser_version:</span> <span class="pl-s"><span class="pl-pds">"</span>10.0+Desktop<span class="pl-pds">"</span></span>, <span class="pl-c1">os_version:</span> <span class="pl-s"><span class="pl-pds">"</span>8<span class="pl-pds">"</span></span> }
+  config.browsers[<span class="pl-s"><span class="pl-pds">"</span>Firefox<span class="pl-pds">"</span></span>] <span class="pl-k">=</span> { <span class="pl-c1">browser:</span> <span class="pl-s"><span class="pl-pds">"</span>Firefox<span class="pl-pds">"</span></span>, <span class="pl-c1">browser_version:</span> <span class="pl-s"><span class="pl-pds">"</span>22.0<span class="pl-pds">"</span></span>, <span class="pl-c1">os_version:</span> <span class="pl-s"><span class="pl-pds">"</span>7<span class="pl-pds">"</span></span> }
+  config.browsers[<span class="pl-s"><span class="pl-pds">"</span>Safari<span class="pl-pds">"</span></span>] <span class="pl-k">=</span> { <span class="pl-c1">browser:</span> <span class="pl-s"><span class="pl-pds">"</span>Safari<span class="pl-pds">"</span></span>, <span class="pl-c1">browser_version:</span> <span class="pl-s"><span class="pl-pds">"</span>6.0<span class="pl-pds">"</span></span>, <span class="pl-c1">os:</span> <span class="pl-s"><span class="pl-pds">"</span>OS X<span class="pl-pds">"</span></span>, <span class="pl-c1">os_version:</span> <span class="pl-s"><span class="pl-pds">"</span>Mountain Lion<span class="pl-pds">"</span></span> }
+  config.browsers[<span class="pl-s"><span class="pl-pds">"</span>Chrome<span class="pl-pds">"</span></span>] <span class="pl-k">=</span> { <span class="pl-c1">browser:</span> <span class="pl-s"><span class="pl-pds">"</span>Chrome<span class="pl-pds">"</span></span>, <span class="pl-c1">browser_version:</span> <span class="pl-s"><span class="pl-pds">"</span>28.0<span class="pl-pds">"</span></span>, <span class="pl-c1">os_version:</span> <span class="pl-s"><span class="pl-pds">"</span>7<span class="pl-pds">"</span></span> }</pre></div>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Add the following just after your opening <code>&lt;body&gt;</code> tag:</p>
+
+<div class="highlight highlight-text-html-erb"><pre><span class="pl-pse">&lt;%=</span><span class="pl-s1"> browser_stack_button </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span></pre></div>
+
+<p>If you want to enable it, likely only on a staging server, you can call
+call <code>BrowserStackButton.enable!</code> in a <code>before_filter</code> or in your controller
+action if you want to enable it in the current Rails environment.</p>
+
+<p>You could enable it on production for just admin users or whatever you like. We
+only use it on our staging server.</p>
+
+<p>Sometimes you need to add additional parameters to your site url that is
+visited by BrowserStack. We use this for a login backdoor on our staging server
+which allows us to view the page as the same user we are currently logged in
+as. To do this, pass an additional hash to <code>enable!</code>:</p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c1">BrowserStackButton</span>.enable! <span class="pl-k">do </span>|<span class="pl-smi">button</span>|
+  <span class="pl-c"># Add additional params to the url</span>
+  <span class="pl-k">if</span> user_signed_in?
+    button.url_params[<span class="pl-c1">:backdoor</span>] <span class="pl-k">=</span> current_user.email
+  <span class="pl-k">else</span>
+    button.url_params[<span class="pl-c1">:backdoor</span>] <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>anonymous<span class="pl-pds">"</span></span>
+  <span class="pl-k">end</span>
+
+  <span class="pl-c"># OR override the URL entirely</span>
+  button.url <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>http://example.com<span class="pl-pds">"</span></span>
+<span class="pl-k">end</span></pre></div>
+
+<p>Once enabled, you should see a BrowserStack logo in the top left of the page.
+Click it to reveal a dropdown and select a browser. You will need to enable
+popups. When changing browsers, it is best to close the previous browser window
+before clicking the next one.</p>
+
+<h2>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Todo</h2>
+
+<ul>
+<li>Localhost/Tunnel support</li>
+<li>Extract more to javascript so it is usable outside of a Rails project.</li>
+</ul>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributing</h2>
+
+<ol>
+<li>Fork it ( <a href="http://github.com/substantial/browser_stack_button/fork">http://github.com/substantial/browser_stack_button/fork</a> )</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/YOTOV-LIMITED/browser_stack_button">Browser stack button</a> is maintained by <a href="https://github.com/YOTOV-LIMITED">YOTOV-LIMITED</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("72492019 ");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
